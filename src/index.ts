@@ -4,6 +4,7 @@ import { CategoriaMap } from "@modules/catalogo/mappers/categoria.map";
 import { DomainException } from "@shared/domain/domain.exception";
 import { writeFile, readFile } from "fs";
 
+
 try {
 
     let categoria: Categoria;
