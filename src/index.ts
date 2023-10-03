@@ -9,7 +9,7 @@ const prisma = new PrismaClient({
 });
 
 async function main() {
-   
+    
     prisma.$connect().then(
         async () => {
             console.log('Postgres Conectado');
@@ -18,30 +18,62 @@ async function main() {
 
     const categoriaRepo = new CategoriaPrismaRepository(prisma);
 
-    //const categoriaRecuperada = await categoriaRepo.recuperarPorUuid("c2666bdb-c055-40bb-951b-32f899f41e30");
+    ////////////////////////////////
+    //Recuperar Categoria por UUID//
+    ////////////////////////////////
+    
+    //const categoriaRecuperada: Categoria | null = await categoriaRepo.recuperarPorUuid("a2b15a09-3446-4fb1-8335-fb803712e4b8");
 
     //console.log(categoriaRecuperada);
 
-    //const categoria: Categoria = Categoria.criar({
-    //    nome:'Banho'
-    //})    
+    /////////////////////////////////
+    //Recuperar Todas as Categorias//
+    /////////////////////////////////
+    
+    //const todasCategorias: Array<Categoria> = await categoriaRepo.recuperarTodos();
 
-    //const categoriaInserida = await categoriaRepo.inserir(categoria);
+    //console.log(todasCategorias);
 
-    //console.log(categoriaInserida);
+    ////////////////////////////////
+    //Verifica se Existe Categoria//
+    ////////////////////////////////
+    
+    //const existeCategoria: boolean = await categoriaRepo.existe("abe86ba0-0506-46ff-94a9-b6c7467d39e2");
 
-    //const categorias = await categoriaRepo.recuperarTodos();
+    //console.log(existeCategoria);
 
-    //console.log(categorias);
+    /////////////////////
+    //Inserir Categoria//
+    /////////////////////
+    
+    // const categoria: Categoria = Categoria.criar({
+    //   nome:'Sala e Quarto'
+    // });     
 
-    const categoria = Categoria.recuperar({
-        id: "c2666bdb-c055-40bb-951b-32f899f41e30",
-        nome: "Mesa"
-    })    
+    // const categoriaInserida = await categoriaRepo.inserir(categoria);
 
-    const categoriaAtualizada = await categoriaRepo.atualizar(categoria.id,categoria);
+    // console.log(categoriaInserida);
 
-    console.log(categoriaAtualizada)
+    ///////////////////////
+    //Atualizar Categoria//
+    ///////////////////////
+    
+//     const categoria: Categoria = Categoria.recuperar({
+//         id: "a2b15a09-3446-4fb1-8335-fb803712e4b8",
+//         nome: "Mesa"
+//    });     
+
+//     const atualizouCategoria: boolean = await categoriaRepo.atualizar(categoria.id,categoria);
+
+//     console.log(atualizouCategoria)
+
+    /////////////////////
+    //Deletar Categoria//
+    /////////////////////
+    
+    const categoriaDeletada: boolean = await categoriaRepo.deletar("abe86ba0-0506-46ff-94a9-b6c7467d39e2");
+    
+    console.log(categoriaDeletada);
 
 }
 
