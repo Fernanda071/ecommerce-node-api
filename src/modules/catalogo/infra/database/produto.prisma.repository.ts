@@ -18,21 +18,45 @@ import { produtoIncludeCategoriaPrisma } from "@shared/infra/database/prisma.typ
                 include: produtoIncludeCategoriaPrisma
             });
 
-            if (produtoRecuperado){
-            return ProdutoMap.fromPrismaModelToDomain(produtoRecuperado);
+                if (produtoRecuperado){
+                    return ProdutoMap.fromPrismaModelToDomain(produtoRecuperado);
+                    }
+                    return null;
+               
+                }   
+
+        async recuperarTodos(): Promise<Produto[]> {
+            const produtosRecuperados = await this._datasource.produto.findMany({
+                include: produtoIncludeCategoriaPrisma
+            });
+
+            const produtos: Array<Produto> = [];
+
+            if(produtosRecuperados.length > 0){
+                produtosRecuperados.map((produto) => {
+            produtos.push(ProdutoMap.fromPrismaModelToDomain(produto));
+                });
             }
-            return null;
-        }   
-        recuperarTodos(): Promise<Produto[]> {
-            throw new Error("Method not implemented.");
+         return produtos;
         }
 
         existe(uuid: string): Promise<boolean> {
             throw new Error("Method not implemented.");
         }
 
-        inserir(entity: Produto): Promise<Produto> {
-            throw new Error("Method not implemented.");
+        async inserir(produto: Produto): Promise<Produto> {
+            const produtoInserido = await this._datasource.produto.create({
+                data: {
+                    id: produto.id,
+                    nome: produto.nome,
+                    descricao: produto.descricao,
+                    valor: produto.valor,
+                    categorias: {
+                        create: produto.categorias.map((categoria) => { return {categoriaId: categoria.id} })
+                    }
+                }
+           });
+           return produto;
         }
 
         atualizar(uuid: string, entity: Partial<Produto>): Promise<boolean> {
@@ -43,3 +67,5 @@ import { produtoIncludeCategoriaPrisma } from "@shared/infra/database/prisma.typ
             throw new Error("Method not implemented.");
         }
 }
+
+export { ProdutoPrismaRepository}

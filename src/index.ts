@@ -1,5 +1,7 @@
 import { Categoria } from '@modules/catalogo/domain/categoria/categoria.entity';
+import { Produto } from '@modules/catalogo/domain/produto/produto.entity';
 import { CategoriaPrismaRepository } from '@modules/catalogo/infra/database/categoria.prisma.repository';
+import { ProdutoPrismaRepository } from '@modules/catalogo/infra/database/produto.prisma.repository';
 import { PrismaClient } from '@prisma/client';
 import { DomainException } from '@shared/domain/domain.exception';
 
@@ -17,7 +19,7 @@ async function main() {
     );
 
     const categoriaRepo = new CategoriaPrismaRepository(prisma);
-
+    const produtoRepo = new ProdutoPrismaRepository(prisma);
     ////////////////////////////////
     //Recuperar Categoria por UUID//
     ////////////////////////////////
@@ -47,10 +49,10 @@ async function main() {
     /////////////////////
     
     // const categoria: Categoria = Categoria.criar({
-    //   nome:'Sala e Quarto'
+    //   nome:'Quarto'
     // });     
 
-    // const categoriaInserida = await categoriaRepo.inserir(categoria);
+    //  const categoriaInserida = await categoriaRepo.inserir(categoria);
 
     // console.log(categoriaInserida);
 
@@ -71,9 +73,34 @@ async function main() {
     //Deletar Categoria//
     /////////////////////
     
-    const categoriaDeletada: boolean = await categoriaRepo.deletar("abe86ba0-0506-46ff-94a9-b6c7467d39e2");
+   // const categoriaDeletada: boolean = await categoriaRepo.deletar("abe86ba0-0506-46ff-94a9-b6c7467d39e2");
     
-    console.log(categoriaDeletada);
+   // console.log(categoriaDeletada);
+
+//    const produtoRecuperado: Produto | null = await produtoRepo.recuperarPorUuid("0c2fa054-6170-4e8a-a109-49d169d51f15");
+//    console.log(produtoRecuperado);
+
+    const categoria01: Categoria = Categoria.recuperar({
+        id:"4f3168a2-b701-48cb-a65e-fd9edcb87b41",
+        nome:'Sala'
+ });
+
+    const categoria02: Categoria = Categoria.recuperar({
+        id: "dbe86b0e-8f74-486d-ab37-08a47ff27a1d",
+        nome: 'Quarto'
+ });
+    const produto : Produto = Produto.criar({
+        nome: 'Toalha de cama',
+        descricao:'toalha de algodão',
+        valor:100,
+        categorias:[categoria02]
+ });
+
+//     const produtoInserido = await produtoRepo.inserir(produto);
+//     console.log(produtoInserido);
+
+        // const todosProdutos: Array<Produto> = await produtoRepo.recuperarTodos();
+        // console.log(todosProdutos);
 
 }
 

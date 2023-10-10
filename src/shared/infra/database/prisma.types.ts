@@ -1,5 +1,4 @@
 import { Prisma } from "@prisma/client";
-import { type } from "os";
 
 const produtoIncludeCategoriaPrisma = Prisma.validator<Prisma.ProdutoInclude>()(
     {
@@ -12,7 +11,7 @@ const produtoIncludeCategoriaPrisma = Prisma.validator<Prisma.ProdutoInclude>()(
 );
 
 type ProdutoComCategoriaPrisma = Prisma.ProdutoGetPayload<
-{include: typeof produtoIncludeCategoriaPrisma;}
+    {include: typeof produtoIncludeCategoriaPrisma;}
 >
 
 export{ produtoIncludeCategoriaPrisma, ProdutoComCategoriaPrisma }

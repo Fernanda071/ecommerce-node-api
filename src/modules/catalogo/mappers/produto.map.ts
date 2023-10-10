@@ -20,11 +20,11 @@ class ProdutoMap {
         return Produto.recuperar(produto)
     }
 
-    public static fromPrismaModelToDomain(produto: ProdutoComCategoriaPrisma): Produto{
+    public static fromPrismaModelToDomain(produtoPrisma: ProdutoComCategoriaPrisma): Produto{
 
         const categorias: Array<Categoria> = [];
 
-        produto.categorias.map(
+        produtoPrisma.categorias.map(
             (categoria) => {
                 categorias.push(
                     CategoriaMap.fromPrismaModelToDomain(categoria.categoria)
@@ -33,10 +33,10 @@ class ProdutoMap {
         ) ;
 
         return this.toDomain({
-            id: produto.id,
-            nome: produto.nome,
-            descricao: produto.descricao,
-            valor: produto.valor,
+            id: produtoPrisma.id,
+            nome: produtoPrisma.nome,
+            descricao: produtoPrisma.descricao,
+            valor: produtoPrisma.valor,
             categorias: categorias
         });
     }
