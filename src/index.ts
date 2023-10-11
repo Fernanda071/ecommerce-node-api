@@ -24,17 +24,17 @@ async function main() {
     //Recuperar Categoria por UUID//
     ////////////////////////////////
     
-    //const categoriaRecuperada: Categoria | null = await categoriaRepo.recuperarPorUuid("a2b15a09-3446-4fb1-8335-fb803712e4b8");
+    // const categoriaRecuperada: Categoria | null = await categoriaRepo.recuperarPorUuid("4f3168a2-b701-48cb-a65e-fd9edcb87b41");
 
-    //console.log(categoriaRecuperada);
+    // console.log(categoriaRecuperada);
 
     /////////////////////////////////
     //Recuperar Todas as Categorias//
     /////////////////////////////////
     
-    //const todasCategorias: Array<Categoria> = await categoriaRepo.recuperarTodos();
+    const todasCategorias: Array<Categoria> = await categoriaRepo.recuperarTodos();
 
-    //console.log(todasCategorias);
+    console.log(todasCategorias);
 
     ////////////////////////////////
     //Verifica se Existe Categoria//
@@ -80,27 +80,38 @@ async function main() {
 //    const produtoRecuperado: Produto | null = await produtoRepo.recuperarPorUuid("0c2fa054-6170-4e8a-a109-49d169d51f15");
 //    console.log(produtoRecuperado);
 
-    const categoria01: Categoria = Categoria.recuperar({
-        id:"4f3168a2-b701-48cb-a65e-fd9edcb87b41",
-        nome:'Sala'
- });
+//     const categoria01: Categoria = Categoria.recuperar({
+//         id:"4f3168a2-b701-48cb-a65e-fd9edcb87b41",
+//         nome:'Sala'
+//  });
 
-    const categoria02: Categoria = Categoria.recuperar({
-        id: "dbe86b0e-8f74-486d-ab37-08a47ff27a1d",
-        nome: 'Quarto'
- });
-    const produto : Produto = Produto.criar({
-        nome: 'Toalha de cama',
-        descricao:'toalha de algodão',
-        valor:100,
-        categorias:[categoria02]
- });
+//     const categoria02: Categoria = Categoria.recuperar({
+//         id: "dbe86b0e-8f74-486d-ab37-08a47ff27a1d",
+//         nome: 'Quarto'
+//  });
+//     const produto : Produto = Produto.criar({
+//         nome: 'Toalha de Mesa',
+//         descricao:'toalha de algodão',
+//         valor:85,
+//         categorias:[categoria02,categoria02]
+//  });
 
-//     const produtoInserido = await produtoRepo.inserir(produto);
+//      const produtoInserido = await produtoRepo.inserir(produto);
 //     console.log(produtoInserido);
 
-        // const todosProdutos: Array<Produto> = await produtoRepo.recuperarTodos();
+        //  const todosProdutos: Array<Produto> = await produtoRepo.recuperarTodos();
         // console.log(todosProdutos);
+
+        // const produto = {
+        //     id: "0c2fa054-6170-4e8a-a109-49d169d51f15",
+        //     nome: "Toalha de Mesa Grande",
+        //     descricao:"toalha de algodão",
+        //     valor: 85
+        // };
+        // const atualizouProduto: boolean = await produtoRepo.atualizar(produto.id,produto);
+
+        // const produtoDeletado: boolean = await produtoRepo.deletar("9fc1d69c-4867-49cc-af52-a59f0078fa41")
+        // console.log(produtoDeletado)
 
 }
 

@@ -27,6 +27,9 @@ import { produtoIncludeCategoriaPrisma } from "@shared/infra/database/prisma.typ
 
         async recuperarTodos(): Promise<Produto[]> {
             const produtosRecuperados = await this._datasource.produto.findMany({
+                where: {
+                dataExclusao: null,
+                },
                 include: produtoIncludeCategoriaPrisma
             });
 
@@ -40,8 +43,10 @@ import { produtoIncludeCategoriaPrisma } from "@shared/infra/database/prisma.typ
          return produtos;
         }
 
-        existe(uuid: string): Promise<boolean> {
-            throw new Error("Method not implemented.");
+        async existe(uuid: string): Promise<boolean> {
+            const produto = await this.recuperarPorUuid(uuid);
+            if (produto) {return true;}
+            return false;
         }
 
         async inserir(produto: Produto): Promise<Produto> {
@@ -59,12 +64,35 @@ import { produtoIncludeCategoriaPrisma } from "@shared/infra/database/prisma.typ
            return produto;
         }
 
-        atualizar(uuid: string, entity: Partial<Produto>): Promise<boolean> {
-            throw new Error("Method not implemented.");
+        async atualizar(uuid: string, produto: Partial<Produto>): Promise<boolean> {
+           const produtoAtualizado = await this._datasource.produto.update(
+            {
+                where: {id : uuid},
+                data: {
+                    nome: produto.nome,
+                    descricao: produto.descricao,
+                    valor: produto.valor               
+                }
+            }
+           );
+           if (produtoAtualizado) {return true;}
+           return false;
         }
 
-        deletar(uuid: string): Promise<boolean> {
-            throw new Error("Method not implemented.");
+       async deletar(uuid: string): Promise<boolean> {
+        
+        const produtoDeletado = await this._datasource.produto.update(
+            {
+                where: {
+                    id: uuid
+                },
+                data: {
+                    dataExclusao: new Date()
+                }
+            }
+        );
+        if ( produtoDeletado.id) {return true;}
+        return false;
         }
 }
 
