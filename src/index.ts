@@ -24,7 +24,7 @@ async function main() {
     //Recuperar Categoria por UUID//
     ////////////////////////////////
     
-    // const categoriaRecuperada: Categoria | null = await categoriaRepo.recuperarPorUuid("4f3168a2-b701-48cb-a65e-fd9edcb87b41");
+    // const categoriaRecuperada: Categoria | null = await categoriaRepo.recuperarPorUuid("260cdd1c-e284-4c57-87c2-bb9d4ce79bd2");
 
     // console.log(categoriaRecuperada);
 
@@ -32,9 +32,9 @@ async function main() {
     //Recuperar Todas as Categorias//
     /////////////////////////////////
     
-    const todasCategorias: Array<Categoria> = await categoriaRepo.recuperarTodos();
+    // const todasCategorias: Array<Categoria> = await categoriaRepo.recuperarTodos();
 
-    console.log(todasCategorias);
+    // console.log(todasCategorias);
 
     ////////////////////////////////
     //Verifica se Existe Categoria//
@@ -48,11 +48,11 @@ async function main() {
     //Inserir Categoria//
     /////////////////////
     
-    // const categoria: Categoria = Categoria.criar({
-    //   nome:'Quarto'
-    // });     
+    //const categoria: Categoria = Categoria.criar({
+     // nome:'Cozinha'
+   // });     
 
-    //  const categoriaInserida = await categoriaRepo.inserir(categoria);
+      //const categoriaInserida = await categoriaRepo.inserir(categoria);
 
     // console.log(categoriaInserida);
 
@@ -61,8 +61,8 @@ async function main() {
     ///////////////////////
     
 //     const categoria: Categoria = Categoria.recuperar({
-//         id: "a2b15a09-3446-4fb1-8335-fb803712e4b8",
-//         nome: "Mesa"
+//         id: "260cdd1c-e284-4c57-87c2-bb9d4ce79bd2",
+//         nome: "Cozinha Americana"
 //    });     
 
 //     const atualizouCategoria: boolean = await categoriaRepo.atualizar(categoria.id,categoria);
@@ -73,12 +73,14 @@ async function main() {
     //Deletar Categoria//
     /////////////////////
     
-   // const categoriaDeletada: boolean = await categoriaRepo.deletar("abe86ba0-0506-46ff-94a9-b6c7467d39e2");
+//    const categoriaDeletada: boolean = await categoriaRepo.deletar("260cdd1c-e284-4c57-87c2-bb9d4ce79bd2");
     
-   // console.log(categoriaDeletada);
+//    console.log(categoriaDeletada);
 
-//    const produtoRecuperado: Produto | null = await produtoRepo.recuperarPorUuid("0c2fa054-6170-4e8a-a109-49d169d51f15");
+//    const produtoRecuperado: Produto | null = await produtoRepo.recuperarPorUuid("9fc1d69c-4867-49cc-af52-a59f0078fa41");
 //    console.log(produtoRecuperado);
+
+//    console.log(produtoRecuperado?.estaDeletado());
 
 //     const categoria01: Categoria = Categoria.recuperar({
 //         id:"4f3168a2-b701-48cb-a65e-fd9edcb87b41",
@@ -90,10 +92,10 @@ async function main() {
 //         nome: 'Quarto'
 //  });
 //     const produto : Produto = Produto.criar({
-//         nome: 'Toalha de Mesa',
+//         nome: 'Toalha de cozinha',
 //         descricao:'toalha de algodão',
 //         valor:85,
-//         categorias:[categoria02,categoria02]
+//         categorias:[categoria01,categoria02]
 //  });
 
 //      const produtoInserido = await produtoRepo.inserir(produto);
@@ -103,14 +105,14 @@ async function main() {
         // console.log(todosProdutos);
 
         // const produto = {
-        //     id: "0c2fa054-6170-4e8a-a109-49d169d51f15",
-        //     nome: "Toalha de Mesa Grande",
+        //     id: "33acfd30-2a60-4307-8865-10c1509a82f9",
+        //     nome: "Toalha de Cozinha",
         //     descricao:"toalha de algodão",
-        //     valor: 85
+        //     valor: 200
         // };
-        // const atualizouProduto: boolean = await produtoRepo.atualizar(produto.id,produto);
+        //  const atualizouProduto: boolean = await produtoRepo.atualizar(produto.id,produto);
 
-        // const produtoDeletado: boolean = await produtoRepo.deletar("9fc1d69c-4867-49cc-af52-a59f0078fa41")
+        // const produtoDeletado: boolean = await produtoRepo.deletar( "33acfd30-2a60-4307-8865-10c1509a82f9")
         // console.log(produtoDeletado)
 
 }
