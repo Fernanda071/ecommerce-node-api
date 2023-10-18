@@ -2,7 +2,9 @@ import { faker } from '@faker-js/faker';
 import { beforeAll, describe, expect, test } from "vitest";
 import { Categoria } from "../categoria/categoria.entity";
 import { Produto } from "./produto.entity";
-import { DescricaoProdutoTamanhoMaximoInvalido, DescricaoProdutoTamanhoMinimoInvalido, NomeProdutoTamanhoMaximoInvalido, NomeProdutoTamanhoMinimoInvalido, QtdMaximaCategoriaProdutoInvalida, QtdMinimaCategoriaProdutoInvalida, ValorMinimoProdutoInvalido } from "./produto.exception";
+import { 
+    ProdutoExceptions
+ } from "./produto.exception";
 import { CriarProdutosProps } from "./produto.types";
 
 
@@ -65,7 +67,7 @@ describe('Entidade de Domínio: Criar Produto', () => {
         };
 
         expect(() => Produto.criar(produtoNomeInvalido))
-            .toThrowError(NomeProdutoTamanhoMinimoInvalido);
+            .toThrowError(ProdutoExceptions.NomeProdutoTamanhoMinimoInvalido);
 
     });
 
@@ -79,7 +81,7 @@ describe('Entidade de Domínio: Criar Produto', () => {
         };
 
         expect(() => Produto.criar(produtoNomeInvalido))
-            .toThrowError(NomeProdutoTamanhoMaximoInvalido);
+            .toThrowError(ProdutoExceptions.NomeProdutoTamanhoMaximoInvalido);
 
     });
     
@@ -93,7 +95,7 @@ describe('Entidade de Domínio: Criar Produto', () => {
         };
 
         expect(() => Produto.criar(produtoNomeInvalido))
-            .toThrowError(DescricaoProdutoTamanhoMinimoInvalido);
+            .toThrowError(ProdutoExceptions.DescricaoProdutoTamanhoMinimoInvalido);
 
     });
     
@@ -107,7 +109,7 @@ describe('Entidade de Domínio: Criar Produto', () => {
         };
 
         expect(() => Produto.criar(produtoNomeInvalido))
-            .toThrowError(DescricaoProdutoTamanhoMaximoInvalido);
+            .toThrowError(ProdutoExceptions.DescricaoProdutoTamanhoMaximoInvalido);
 
     });
 
@@ -121,7 +123,7 @@ describe('Entidade de Domínio: Criar Produto', () => {
         };
 
         expect(() => Produto.criar(produtoNomeInvalido))
-            .toThrowError(ValorMinimoProdutoInvalido);
+            .toThrowError(ProdutoExceptions.ValorMinimoProdutoInvalido);
 
     });
 
@@ -135,7 +137,7 @@ describe('Entidade de Domínio: Criar Produto', () => {
         };
 
         expect(() => Produto.criar(produtoNomeInvalido))
-            .toThrowError(QtdMinimaCategoriaProdutoInvalida);
+            .toThrowError(ProdutoExceptions.QtdMinimaCategoriaProdutoInvalida);
 
     });
 
@@ -149,7 +151,7 @@ describe('Entidade de Domínio: Criar Produto', () => {
         };
 
         expect(() => Produto.criar(produtoNomeInvalido))
-            .toThrowError(QtdMaximaCategoriaProdutoInvalida);
+            .toThrowError(ProdutoExceptions.QtdMaximaCategoriaProdutoInvalida);
 
     });
     

@@ -49,28 +49,52 @@ class ValorMinimoProdutoInvalido extends ProdutoException {
 }
 
 class QtdMinimaCategoriaProdutoInvalida extends ProdutoException {
-  public constructor(message:string = '⚠️ A quantidade mínima de categorias do produto é inválida') {
-    super(message);
-    this.name = 'QtdMinimaCategoriaProdutoInvalida'
-    this.message = message;
-  }
+    public constructor(message:string = '⚠️ A quantidade mínima de categorias do produto é inválida') {
+      super(message);
+      this.name = 'QtdMinimaCategoriaProdutoInvalida'
+      this.message = message;
+    }
 }
 
 class QtdMaximaCategoriaProdutoInvalida extends ProdutoException {
-  public constructor(message:string = '⚠️ A quantidade mínima de categorias do produto é inválida') {
+  public constructor(message:string = '⚠️ A quantidade máxima de categorias do produto é inválida') {
     super(message);
     this.name = 'QtdMaximaCategoriaProdutoInvalida'
     this.message = message;
   }
 }
 
+ class ProdutoJáPossuiQtdMaximaCategorias extends ProdutoException {
+    public constructor(message:string = 'O produto já possui a quantidade máxima de categorias'){
+      super(message);
+      this.name = 'ProdutoJaPossuiQtdMaximaCategorias'
+      this.message = message;
+    }
+ }
+
+ class ProdutoJáPossuiCategoriaInformada extends ProdutoException {
+  public constructor(message:string = 'O produto já possui a categoria informada.'){
+    super(message);
+    this.name = 'ProdutoJaPossuiCategoriaInformada'
+    this.message = message;
+  }
+}
+
+const ProdutoExceptions = {
+  ProdutoException: ProdutoException,
+      NomeProdutoTamanhoMinimoInvalido: NomeProdutoTamanhoMinimoInvalido,
+      NomeProdutoTamanhoMaximoInvalido: NomeProdutoTamanhoMinimoInvalido,
+      DescricaoProdutoTamanhoMinimoInvalido: DescricaoProdutoTamanhoMinimoInvalido,
+      DescricaoProdutoTamanhoMaximoInvalido: DescricaoProdutoTamanhoMaximoInvalido,
+      ValorMinimoProdutoInvalido: ValorMinimoProdutoInvalido,
+      QtdMinimaCategoriaProdutoInvalida: QtdMinimaCategoriaProdutoInvalida,
+      QtdMaximaCategoriaProdutoInvalida: QtdMaximaCategoriaProdutoInvalida,
+      ProdutoJáPossuiQtdMaximaCategorias: ProdutoJáPossuiQtdMaximaCategorias,
+      ProdutoJáPossuiCategoriaInformada: ProdutoJáPossuiCategoriaInformada
+ 
+}
+
 export {
-  ProdutoException,
-  NomeProdutoTamanhoMinimoInvalido,
-  NomeProdutoTamanhoMaximoInvalido,
-  DescricaoProdutoTamanhoMaximoInvalido,
-  DescricaoProdutoTamanhoMinimoInvalido,
-  QtdMaximaCategoriaProdutoInvalida,
-  QtdMinimaCategoriaProdutoInvalida, 
-  ValorMinimoProdutoInvalido,
+  ProdutoExceptions,
+
 }

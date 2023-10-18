@@ -1,7 +1,7 @@
 import { ProdutoMap } from "@modules/catalogo/mappers/produto.map";
 import { Entity } from "@shared/domain/entity";
 import { Categoria } from "../categoria/categoria.entity";
-import { DescricaoProdutoTamanhoMaximoInvalido, DescricaoProdutoTamanhoMinimoInvalido, NomeProdutoTamanhoMaximoInvalido, NomeProdutoTamanhoMinimoInvalido, QtdMaximaCategoriaProdutoInvalida, QtdMinimaCategoriaProdutoInvalida, ValorMinimoProdutoInvalido } from "./produto.exception";
+import {ProdutoExceptions} from "./produto.exception";
 import { CriarProdutosProps, IProduto, RecuperarProdutoProps } from "./produto.types";
 
 class Produto extends Entity<IProduto> implements IProduto {
@@ -14,16 +14,22 @@ class Produto extends Entity<IProduto> implements IProduto {
     private _dataAtualizacao?: Date | undefined;
     private _dataExclusao?: Date | null | undefined;
    
+       //////////////
+       ///constants//
+       /////////////
+
+       public static readonly QTD_MINIMA_CATEGORIAS = 1;
+       public static readonly QTD_MAXIMA_CATEGORIAS = 3;
 
     public get nome(): string {
         return this._nome;
     }
     private set nome(value: string) {
         if(value.trim().length < 5){
-            throw new NomeProdutoTamanhoMinimoInvalido()
+            throw new ProdutoExceptions.NomeProdutoTamanhoMinimoInvalido()
         }
         if(value.trim().length > 50){
-            throw new NomeProdutoTamanhoMaximoInvalido()
+            throw new ProdutoExceptions.NomeProdutoTamanhoMaximoInvalido()
         }
         this._nome = value;
     }
@@ -33,10 +39,10 @@ class Produto extends Entity<IProduto> implements IProduto {
     }
     private set descricao(value: string) {
         if(value.trim().length < 10){
-            throw new DescricaoProdutoTamanhoMinimoInvalido()
+            throw new ProdutoExceptions.DescricaoProdutoTamanhoMinimoInvalido()
         }
         if(value.trim().length > 200){
-            throw new DescricaoProdutoTamanhoMaximoInvalido()
+            throw new ProdutoExceptions.DescricaoProdutoTamanhoMaximoInvalido()
         }
         this._descricao = value;
     }
@@ -46,7 +52,7 @@ class Produto extends Entity<IProduto> implements IProduto {
     }
     private set valor(value: number) {
         if(value < 0){
-            throw new ValorMinimoProdutoInvalido();
+            throw new ProdutoExceptions.ValorMinimoProdutoInvalido();
         }
         this._valor = value;
     }
@@ -56,10 +62,10 @@ class Produto extends Entity<IProduto> implements IProduto {
     }
     private set categorias(value: Array<Categoria>) {
         if(value.length < 1){
-            throw new QtdMinimaCategoriaProdutoInvalida()
+            throw new ProdutoExceptions.QtdMinimaCategoriaProdutoInvalida()
         }
         if(value.length > 3){
-            throw new QtdMaximaCategoriaProdutoInvalida()
+            throw new ProdutoExceptions.QtdMaximaCategoriaProdutoInvalida()
         }
         this._categorias = value;
     }
