@@ -61,10 +61,11 @@ class Produto extends Entity<IProduto> implements IProduto {
         return this._categorias;
     }
     private set categorias(value: Array<Categoria>) {
-        if(value.length < 1){
+        if(value.length < Produto.QTD_MINIMA_CATEGORIAS){
             throw new ProdutoExceptions.QtdMinimaCategoriaProdutoInvalida()
         }
-        if(value.length > 3){
+
+        if(value.length > Produto.QTD_MAXIMA_CATEGORIAS){
             throw new ProdutoExceptions.QtdMaximaCategoriaProdutoInvalida()
         }
         this._categorias = value;
@@ -111,12 +112,38 @@ class Produto extends Entity<IProduto> implements IProduto {
         return new Produto(props)
     }
 
+  //////////////
+////metodos////
+ ///////////////
+
     public toDTO(): IProduto{
         return ProdutoMap.toDTO(this)
     }
     
     public estaDeletado(): boolean {
         return this.dataExclusao !== null ? true : false;
+    }
+    
+    public quantidadeCategorias(): number {
+        return this._categorias.length;
+    }
+    public possuiCategoria( categoria: Categoria): boolean {
+        const categoriaExistente = this.categorias.find((categoriaExistente) => categoriaExistente.id == categoria.id);
+        if (categoriaExistente) {
+            return true;
+        }
+        return false;
+    }
+    public adicionarCategoria( categoria: Categoria): Categoria {
+        if (this.quantidadeCategorias() >= Produto.QTD_MAXIMA_CATEGORIAS) {
+            throw new ProdutoExceptions.ProdutoJáPossuiQtdMaximaCategorias();
+            
+        }
+        if (this.possuiCategoria(categoria)) {
+            throw new ProdutoExceptions.ProdutoJáPossuiCategoriaInformada();
+        }
+        this.categorias.push(categoria);
+        return categoria;
     }
 }
 
