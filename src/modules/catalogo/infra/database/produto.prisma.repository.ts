@@ -1,3 +1,4 @@
+import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity";
 import { Produto } from "@modules/catalogo/domain/produto/produto.entity";
 import { IProdutoRepository } from "@modules/catalogo/domain/produto/produto.repository.interface";
 import { ProdutoMap } from "@modules/catalogo/mappers/produto.map";
@@ -8,7 +9,6 @@ import { produtoIncludeCategoriaPrisma } from "@shared/infra/database/prisma.typ
     
     
     class ProdutoPrismaRepository extends PrismaRepository implements IProdutoRepository<Produto>{
-
       
         async recuperarPorUuid(uuid: string): Promise<Produto | null> {
             const produtoRecuperado = await this._datasource.produto.findUnique({
@@ -93,6 +93,18 @@ import { produtoIncludeCategoriaPrisma } from "@shared/infra/database/prisma.typ
         );
         if ( produtoDeletado.id) {return true;}
         return false;
+        }
+       async adicionarCategoria(produto: Produto, categoria: Categoria): Promise<boolean> {
+         const categoriaProdutoAdicionada = await this._datasource.produtosCategorias.create(
+            {
+                data:{
+                    produtoId: produto.id,
+                    categoriaId: categoria.id
+                }
+            }
+         );
+         if (categoriaProdutoAdicionada) {return true;}
+         return false;
         }
 }
 

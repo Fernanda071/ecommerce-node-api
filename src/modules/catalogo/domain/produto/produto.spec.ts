@@ -1,10 +1,8 @@
-import { faker } from '@faker-js/faker';
+import { Faker, faker } from '@faker-js/faker';
 import { beforeAll, describe, expect, test } from "vitest";
 import { Categoria } from "../categoria/categoria.entity";
 import { Produto } from "./produto.entity";
-import { 
-    ProdutoExceptions
- } from "./produto.exception";
+import { ProdutoExceptions } from "./produto.exception";
 import { CriarProdutosProps } from "./produto.types";
 
 
@@ -46,6 +44,9 @@ beforeAll (async ()=>{
      categoriasQtdValidaAptaAdicao = faker.helpers.arrayElements<Categoria>([categoriaValida01,categoriaValida02], {min: 1, max:2});
      categoriasQtdMaxValidaInaptaAdicao = faker.helpers.arrayElements<Categoria>([categoriaValida01,categoriaValida02,categoriaValida03], {min: 3, max: 3});
      categoriasQtdValidaInaptaAdicaoDuplicacao = faker.helpers.arrayElements<Categoria>([categoriaValida01,categoriaValida02], {min: 1, max:2});
+
+     //preenche UUID válido para produto
+     UUIDValido = faker.string.uuid();
 })
 
 describe('Entidade de Domínio: Criar Produto', () => {
@@ -169,9 +170,55 @@ describe('Entidade de Domínio: Adicionar Categoria ao Produto', () =>{
     test('Deve Adicionar Uma Categoria Válida a Um Produto Apto a Ter Uma Nova Categoria', async () => {
         const produtoValidoAptoNovaCategoria: Produto = Produto.recuperar({
             id: UUIDValido,
-            nome:
-        })
+            nome: nomeProdutoValido,
+            descricao: descricaoProdutoValido,
+            valor: valorProdutoValido,
+            categorias: categoriasQtdValidaAptaAdicao
+        });
+        const categoriaValida = Categoria.criar({nome:faker.string.alpha({length:{min:3,max:50}})});
+
+        //quando (when) e entao (then)
+        expect(produtoValidoAptoNovaCategoria.adicionarCategoria(categoriaValida))
+        .toBe(categoriaValida);
+
+        expect(produtoValidoAptoNovaCategoria.categorias)
+        .toContain(categoriaValida);
 
      });
-    
+
+     test('Nao Deve Adicionar Uma Categoria Válida a Um Produto Válido Inapto a Ter Uma Nova Categoria - Quantidade Máxima de Categorias', async () =>{
+
+        const produtoValidoInaptoNovaCategoria: Produto = Produto.recuperar({
+            id: UUIDValido,
+            nome: nomeProdutoValido,
+            descricao: descricaoProdutoValido,
+            valor: valorProdutoValido,
+            categorias: categoriasQtdMaxValidaInaptaAdicao,
+        });
+        //Categoria válida que não seja umas das categorias já adicionadas
+        const categoriaValida = Categoria.criar({nome: faker.string.alpha({length:{min:3,max:50}})});
+
+        //quando (when) e Então (then)
+        expect(() => produtoValidoInaptoNovaCategoria.adicionarCategoria(categoriaValida))
+        .toThrowError(ProdutoExceptions.ProdutoJáPossuiQtdMaximaCategorias);
+     });
+
+     test('Nao Deve Adicionar Uma Categoria Válida a Um Produto Válido Inapto a Ter Uma Nova Categoria - Categoria já adicionada', async () => {
+
+        const produtoValidoInaptoNovaCategoria: Produto = Produto.recuperar({
+            id: UUIDValido,
+            nome: nomeProdutoValido,
+            descricao: descricaoProdutoValido,
+            valor: valorProdutoValido,
+            categorias: categoriasQtdValidaInaptaAdicaoDuplicacao,
+        });
+
+        //categoria válida já adicionada - recupera do array passado no produto anteriormente - garante que é um elemento que já exixte
+        const categoriaValida = categoriasQtdValidaInaptaAdicaoDuplicacao[0];
+
+        //Quando (when) e Entao (then)
+        expect(() => produtoValidoInaptoNovaCategoria.adicionarCategoria(categoriaValida))
+        .toThrowError(ProdutoExceptions.ProdutoJáPossuiCategoriaInformada);
+     })
+
 });

@@ -48,11 +48,11 @@ async function main() {
     //Inserir Categoria//
     /////////////////////
     
-    //const categoria: Categoria = Categoria.criar({
-     // nome:'Cozinha'
-   // });     
+//     const categoria: Categoria = Categoria.criar({
+//      nome:'Cozinha'
+//    });     
 
-      //const categoriaInserida = await categoriaRepo.inserir(categoria);
+//       const categoriaInserida = await categoriaRepo.inserir(categoria);
 
     // console.log(categoriaInserida);
 
@@ -83,19 +83,19 @@ async function main() {
 //    console.log(produtoRecuperado?.estaDeletado());
 
 //     const categoria01: Categoria = Categoria.recuperar({
-//         id:"4f3168a2-b701-48cb-a65e-fd9edcb87b41",
-//         nome:'Sala'
+//         id:"b8768ecd-eb67-4874-9456-600f1dd2eefb",
+//         nome:'Cozinha'
 //  });
 
 //     const categoria02: Categoria = Categoria.recuperar({
-//         id: "dbe86b0e-8f74-486d-ab37-08a47ff27a1d",
-//         nome: 'Quarto'
+//         id: "a606ed2b-562e-4b4b-9eca-5d88e55aa5db",
+//         nome: 'Banho'
 //  });
 //     const produto : Produto = Produto.criar({
-//         nome: 'Toalha de cozinha',
-//         descricao:'toalha de algodão',
-//         valor:85,
-//         categorias:[categoria01,categoria02]
+//         nome: 'Pano de prato',
+//         descricao:'Algodão fio 60',
+//         valor:30,
+//         categorias:[categoria01]
 //  });
 
 //      const produtoInserido = await produtoRepo.inserir(produto);
@@ -115,6 +115,22 @@ async function main() {
         // const produtoDeletado: boolean = await produtoRepo.deletar( "33acfd30-2a60-4307-8865-10c1509a82f9")
         // console.log(produtoDeletado)
 
+        /////////////////////////////////////
+        /// adicionar categoria ao produto///
+        /////////////////////////////////////
+
+        // const produtoRecuperado: Produto | null = await produtoRepo.recuperarPorUuid("0c2fa054-6170-4e8a-a109-49d169d51f15")
+
+        // const categoriaRecuperada: Categoria | null = await categoriaRepo.recuperarPorUuid("a2b15a09-3446-4fb1-8335-fb803712e4b8")
+
+        // if (produtoRecuperado && categoriaRecuperada) {
+
+        //     if(produtoRecuperado.adicionarCategoria(categoriaRecuperada)) {
+        //         await produtoRepo.adicionarCategoria(produtoRecuperado,categoriaRecuperada)
+        //     }
+          
+        // }   
+     
 }
 
 main()
