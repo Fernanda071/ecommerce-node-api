@@ -4,14 +4,14 @@ const produtoIncludeCategoriaPrisma = Prisma.validator<Prisma.ProdutoInclude>()(
     {
         categorias: {
             include: {
-                categoria: true 
+                categoria: true
             }
         }
     }
 );
 
 type ProdutoComCategoriaPrisma = Prisma.ProdutoGetPayload<
-    {include: typeof produtoIncludeCategoriaPrisma;}
->
+	{include: typeof produtoIncludeCategoriaPrisma;}
+>;
 
-export{ produtoIncludeCategoriaPrisma, ProdutoComCategoriaPrisma }
+export { produtoIncludeCategoriaPrisma, ProdutoComCategoriaPrisma }

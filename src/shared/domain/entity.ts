@@ -1,19 +1,27 @@
 import { randomUUID } from "crypto";
 import { IDEntityUUIDInvalid } from "./domain.exception";
 
-const isEntity = (v: any): v is Entity<any> =>{
+//Método que verifica se é a instância de uma entidade
+const isEntity = (v: any): v is Entity<any> => {
     return v instanceof Entity;
 };
 
+abstract class Entity<T> {
 
-abstract class Entity <T> {
+    /////////////
+    //Atributos//
+    /////////////
 
-    private _id: string = '';
+	private _id: string;
 
+    ///////////////
+    //Gets e Sets//
+    ///////////////
 
     public get id(): string {
         return this._id;
     }
+
     private set id(value: string) {
 
         if (!Entity.validUUID(value)){
@@ -23,31 +31,39 @@ abstract class Entity <T> {
         this._id = value;
     }
 
-    constructor(id?: string){
+    //////////////
+    //Construtor//
+    //////////////
+
+    constructor(id?: string) {
         this.id = id ? id : randomUUID();
     }
 
+    ///////////
+    //Métodos//
+    ///////////
+
     public equals(object?: Entity<T>): boolean {
-        if (object == null || object == undefined){
-            return false
+        if (object == null || object == undefined) {
+          return false
         }
-
-        if (this === object){
-            return true
+    
+        if (this === object) {
+          return true
         }
-
-        if (!isEntity(object)){
-            return false
+    
+        if (!isEntity(object)) {
+          return false
         }
-
+    
         return this._id == object._id
     }
 
-    public static validUUID(UUIDD: string): boolean {
+    public static validUUID(UUID: string): boolean {
         let padraoUUID: RegExp = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-        return padraoUUID.test(UUIDD);
-    }
+        return padraoUUID.test(UUID);
+    } 
 
-} 
+}
 
-export {Entity}
+export { Entity }

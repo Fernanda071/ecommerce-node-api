@@ -7,6 +7,7 @@ abstract class PrismaRepository {
     constructor(prisma: PrismaClient){
         this._datasource = prisma;
     }
+
 }
 
-export {PrismaRepository}
+export { PrismaRepository }

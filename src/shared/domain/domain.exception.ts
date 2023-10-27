@@ -1,9 +1,9 @@
-class DomainException extends Error{
-    constructor(message: string = '⚠️ Exceção de domínio genérico'){
+class DomainException extends Error {
+    constructor(message:string = '⚠️ Exceção de domínio genérica') {
         super(message);
         this.name = 'DomainException';
-        this.message = 'Exceção de domínio genérica';
-        Error.captureStackTrace(this, this.constructor);
+        this.message = message;
+        Error.captureStackTrace(this, this.constructor)
     }
 }
 
@@ -15,4 +15,7 @@ class IDEntityUUIDInvalid extends DomainException {
     }
 }
 
-export { DomainException, IDEntityUUIDInvalid }
+export { 
+    DomainException,
+    IDEntityUUIDInvalid
+}
