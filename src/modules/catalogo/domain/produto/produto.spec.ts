@@ -21,6 +21,9 @@ let UUIDValido: string;
 let categoriasQtdValidaAptaAdicao: Array<Categoria>;
 let categoriasQtdMaxValidaInaptaAdicao: Array<Categoria>;
 let categoriasQtdValidaInaptaAdicaoDuplicacao: Array<Categoria>;
+let cateoriasQtdValidaAptaRemocao: Array<Categoria>;
+let categoriasQtdMinValidaInaptaRemocao: Array<Categoria>;
+let categoriasQtdValidaInaptaRemocaoNaoAssociada: Array<Categoria>;
 
 beforeAll (async ()=>{
 
@@ -44,6 +47,9 @@ beforeAll (async ()=>{
      categoriasQtdValidaAptaAdicao = faker.helpers.arrayElements<Categoria>([categoriaValida01,categoriaValida02], {min: 1, max:2});
      categoriasQtdMaxValidaInaptaAdicao = faker.helpers.arrayElements<Categoria>([categoriaValida01,categoriaValida02,categoriaValida03], {min: 3, max: 3});
      categoriasQtdValidaInaptaAdicaoDuplicacao = faker.helpers.arrayElements<Categoria>([categoriaValida01,categoriaValida02], {min: 1, max:2});
+     cateoriasQtdValidaAptaRemocao = faker.helpers.arrayElements<Categoria>([categoriaValida01,categoriaValida02,categoriaValida03], { min: 2, max: 3});
+     categoriasQtdMinValidaInaptaRemocao = faker.helpers.arrayElements<Categoria>([categoriaValida01], { min: 1, max: 1});
+     categoriasQtdValidaInaptaRemocaoNaoAssociada = faker.helpers.arrayElements<Categoria>([categoriaValida01,categoriaValida02,categoriaValida03], {min: 2, max:3});
 
      //preenche UUID válido para produto
      UUIDValido = faker.string.uuid();
@@ -222,3 +228,30 @@ describe('Entidade de Domínio: Adicionar Categoria ao Produto', () =>{
      })
 
 });
+
+describe('Entidade de Domínio: Remover Categoria do Produto',() => {
+
+    test('Deve Remover uma Categoria Válida de um produto válido apto a ter uma categoria Removida', async () => {
+        //Dado (Given)
+            const produtoValidoAptoRemoverCategoria: Produto = Produto.recuperar({
+                id: UUIDValido,
+                nome: nomeProdutoValido,
+                descricao: descricaoProdutoValido,
+                valor: valorProdutoValido,
+                categorias: cateoriasQtdValidaAptaRemocao
+        });
+        
+                const categoriaValida = cateoriasQtdValidaAptaRemocao [0];
+        
+                expect(produtoValidoAptoRemoverCategoria.removerCategoria(categoriaValida))
+                .toBe(categoriaValida);
+        
+                expect(produtoValidoAptoRemoverCategoria.categorias)
+                .not.toContain(categoriaValida);
+        
+        });
+});
+
+
+
+
