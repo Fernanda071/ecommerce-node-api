@@ -6,6 +6,7 @@ import { faker } from "@faker-js/faker";
 import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity";
 import { CategoriaMap } from "../mappers/categoria.map";
 
+
 const prismaMock: DeepMockProxy<PrismaClient> = mockDeep<PrismaClient>();
 let categoriaRepositorio: CategoriaPrismaRepository;
 let UUIDValido: string;
