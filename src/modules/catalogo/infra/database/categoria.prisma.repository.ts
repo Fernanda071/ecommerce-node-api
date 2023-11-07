@@ -42,7 +42,8 @@ class CategoriaPrismaRepository extends PrismaRepository implements ICategoriaRe
                 }
             }
         );
-        return categoria;
+     
+        return CategoriaMap.fromPrismaModelToDomain(categoriaInserida);
     }
 
     async atualizar(uuid: string, categoria: Categoria): Promise<boolean> {
