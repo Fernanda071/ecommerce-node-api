@@ -6,6 +6,6 @@
 
 */
 -- AlterTable
-ALTER TABLE "produtos" DROP COLUMN "data_atualizaco",
+ALTER TABLE "produtos" DROP COLUMN "data_atualizacao",
 ADD COLUMN     "data_atualizacao" TIMESTAMP(3) NOT NULL,
 ADD COLUMN     "data_exclusao" TIMESTAMP(3);
