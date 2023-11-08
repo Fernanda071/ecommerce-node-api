@@ -1,4 +1,3 @@
-
 import { Categoria } from '@modules/catalogo/domain/categoria/categoria.entity';
 import { Produto } from '@modules/catalogo/domain/produto/produto.entity';
 import { StatusProduto } from '@modules/catalogo/domain/produto/produto.types';
@@ -8,7 +7,7 @@ import { DomainException } from '@shared/domain/domain.exception';
 import { prisma } from 'main/infra/database/orm/prisma/client';
 import { categoriaRepositorio as categoriaRepo } from '@modules/catalogo/infra/database';
 import { produtoRepositorio as produtoRepo } from '@modules/catalogo/infra/database';
-import { atualizarCategoriaUseCase, deletarCategoriaUseCase, inserirCategoriaUseCase, recuperarCategoriaPorIdUseCase, recuperarTodasCategorias } from '@modules/catalogo/application/use-case';
+import { atualizarCategoriaUseCase, deletarCategoriaUseCase, inserirCategoriaUseCase, recuperarCategoriaPorIdUseCase, recuperarProdutoPorIdUseCase, recuperarTodasCategoriasUseCase } from '@modules/catalogo/application/use-case';
 import { InserirCategoriaUseCase } from '@modules/catalogo/application/use-case/inserir-categoria/inserir-categoria.use-case';
 
 
@@ -30,40 +29,36 @@ async function main() {
     //Recuperar Todas as Categorias//
     /////////////////////////////////
    
-    //console.log(await recuperarTodasCategorias.execute());
+    //console.log(await recuperarTodasCategoriasUseCase.execute());
 
     /////////////////////
     //Inserir Categoria//
     /////////////////////
    
-    // console.log(await inserirCategoriaUseCase.execute({
-    //    nome:'Quarto'
-    // }));
+    //console.log(await inserirCategoriaUseCase.execute({
+    //    nome:'Cozinha'
+    //}));
 
     ///////////////////////s
     //Atualizar Categoria//
     ///////////////////////
      
-    // console.log(await atualizarCategoriaUseCase.execute({
-    //    id: "6c44a842-ea5e-4aca-9627-0f010bb8720c",
+    //console.log(await atualizarCategoriaUseCase.execute({
+    //    id: "75a441d9-988b-46f0-a889-7ccafcb18f54",
     //    nome: "Cozinha Americana"
-    // }));
+    //}));
 
     /////////////////////
     //Deletar Categoria//
     /////////////////////
    
-    console.log(await deletarCategoriaUseCase.execute("6c44a842-ea5e-4aca-9627-0f010bb8720c"));
+    //console.log(await deletarCategoriaUseCase.execute("75a441d9-988b-46f0-a889-7ccafcb18f54"));
 
     ////////////////////////////////
     //Recuperar Produto por UUID//
     ////////////////////////////////
        
-    //const produtoRecuperado: Produto | null = await produtoRepo.recuperarPorUuid("7f35c7f4-ce26-4503-bfce-0afd937adfb8");
-
-    //console.log(produtoRecuperado);
-
-    //console.log(produtoRecuperado?.estaDeletado());
+    // console.log(await recuperarProdutoPorIdUseCase.execute("92941da0-b610-4815-aa4d-1434c09b1006"));
 
     ///////////////////
     //Inserir Produto//
