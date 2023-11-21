@@ -4,7 +4,7 @@ import { ICategoriaRepository } from "@modules/catalogo/domain/categoria/categor
 import { ICategoria } from "@modules/catalogo/domain/categoria/categoria.types";
 import { IUseCase } from "@shared/application/use-case.interface";
 import { CategoriaMap } from "@modules/catalogo/infra/mappers/categoria.map";
-import { CategoriaApplicationExceptions } from "./exception/categoria.application.exception";
+import { CategoriaApplicationExceptions } from "../../exception/categoria.application.exception";
 
 class RecuperarCategoriaPorIdUseCase implements IUseCase<string, ICategoria> {
     private _categoriaRepositorio: ICategoriaRepository<Categoria>;
