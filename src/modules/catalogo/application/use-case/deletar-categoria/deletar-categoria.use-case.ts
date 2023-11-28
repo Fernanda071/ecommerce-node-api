@@ -2,7 +2,7 @@
 import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity";
 import { ICategoriaRepository } from "@modules/catalogo/domain/categoria/categoria.repository.interface";
 import { IUseCase } from "@shared/application/use-case.interface";
-import { CategoriaApplicationExceptions } from "../reuperar-categoria-por-id/exception/categoria.application.exception";
+import { CategoriaApplicationExceptions } from "../../exception/categoria.application.exception";
 
 class DeletarCategoriaUseCase implements IUseCase<string,boolean> {
     private _categoriaRepositorio: ICategoriaRepository<Categoria>;

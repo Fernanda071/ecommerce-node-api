@@ -3,7 +3,8 @@ import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity";
 import { ICategoriaRepository } from "@modules/catalogo/domain/categoria/categoria.repository.interface";
 import { RecuperarCategoriaProps } from "@modules/catalogo/domain/categoria/categoria.types";
 import { IUseCase } from "@shared/application/use-case.interface";
-import { CategoriaApplicationExceptions } from "../reuperar-categoria-por-id/exception/categoria.application.exception";
+import { CategoriaApplicationExceptions } from "../../exception/categoria.application.exception"; 
+
 
 class AtualizarCategoriaUseCase
 implements IUseCase<RecuperarCategoriaProps, boolean> {

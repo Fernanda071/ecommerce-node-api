@@ -2,7 +2,7 @@ import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity";
 import { ICategoriaRepository } from "@modules/catalogo/domain/categoria/categoria.repository.interface";
 import { ICategoria } from "@modules/catalogo/domain/categoria/categoria.types";
 import { IUseCase } from "@shared/application/use-case.interface";
-import { CategoriaApplicationExceptions } from "../reuperar-categoria-por-id/exception/categoria.application.exception";
+import { CategoriaApplicationExceptions } from "../../exception/categoria.application.exception";
 import { CategoriaMap } from "@modules/catalogo/infra/mappers/categoria.map";
 
 class RecuperarTodasCategoriasUseCase implements IUseCase<void, Array<ICategoria>> {
