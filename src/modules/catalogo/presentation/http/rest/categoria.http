@@ -10,12 +10,13 @@ GET http://{{host}}:{{port}}/{{apiversion}}/categorias/37c4deaf-ac8b-48c5-a472-2
 GET http://{{host}}:{{port}}/{{apiversion}}/categorias
 
 
-### Inserir Uma Categoria
+### Inserir Uma Categoria### Inserir Uma Categoria
 POST http://{{host}}:{{port}}/{{apiversion}}/categorias
 Content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZiN2FmNTgyLTQ1MjAtNDQ0Ni04MTZiLWIxOGM1MWI1OTFkNCIsIm5vbWUiOiJGZXJuYWRhIiwiZW1haWwiOiJmZXJuYWRhQGVtYWlsLmNvbSIsInRpcG8iOiJBRE1JTklTVFJBRE9SIiwiaWF0IjoxNzA0ODQ2MDc2LCJleHAiOjE3MDQ4NDk2NzZ9.8T_XbgcI4er8HgVrZA33lPs37o5dDgQpa2eqO7VIARI
 
 {
-    "nome":"Sala de Estar"
+    "nome":"Sala de Televisão"
 }
 
 ### Atualizar Categoria
